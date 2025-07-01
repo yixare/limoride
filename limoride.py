@@ -16,8 +16,9 @@ def load_rides():
             return list(reader)
     except FileNotFoundError:
         return []
-
-st.title("🚘 Limo Ride Tracker")
+        
+rides = load_rides()
+st.title(f"Hi Pat! You have {max(rides)} ride(s) today!")
 
 st.header("Add New Ride")
 with st.form("ride_form"):
@@ -34,7 +35,7 @@ with st.form("ride_form"):
         st.success("Ride added successfully!")
 
 st.header("📅 Upcoming Rides")
-rides = load_rides()
+
 if rides:
     for ride in rides:
         st.write(f"**{ride[0]}** — {ride[1]} {ride[2]} | From: {ride[3]} To: {ride[4]} | ${ride[5]}")
